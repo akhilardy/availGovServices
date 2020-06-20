@@ -1,0 +1,1 @@
+mongodbURL="mongodb+srv://availGS:availGS@miniproject.rriyr.mongodb.net/test"
