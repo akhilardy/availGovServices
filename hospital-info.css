@@ -1,0 +1,73 @@
+.header{
+    background-color: #0ea170;
+    margin:0px;
+    padding: 15px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: white;
+    font-size: 20px;
+}
+p{
+    padding: 0px;
+    margin: 0px;
+}
+.text{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: #0ea170;
+    font-size: 21px;
+    color: white;
+    padding: 10px;
+    
+}
+
+.hospital-entry:hover{
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+.hospital-entry{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: table-cell;
+    background-color: white;
+    padding: 20px;
+}
+.inputs:hover{
+    border: 1px solid #0ea170;
+    background-color: white;
+    color:#0ea170;
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+.inputs{
+    padding :10px;
+    border-radius: 5px;
+    border: 0px;
+    background-color: #0ea170;
+    border: 1px solid transparent;
+    color: white;
+    font-size: 20px;
+  
+}
+.input1{
+    display: flex;
+    
+    margin-bottom: 10px;
+}
+label{
+   width: 150px;  
+    font-size: 18px;
+}
+.details{
+ margin-left: 55%;  
+ padding: 20px;
+}
+.input2{
+       
+       width: 300px;
+}
+.input3{
+    height: 100px;
+    width: 300px;
+}
+.thumbnail{
+    border: 3px solid #0ea170;
+}

@@ -1,0 +1,29 @@
+body{
+    background-image:url('header-bg.jpg') ;
+    background-size: cover;
+}
+.header{
+    background-color: #0ea170;
+    margin:0px;
+    padding: 15px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.entryform{
+   width: 35%;
+  margin-top: 16%;
+  margin-left: 30%;
+}
+.entryform div{
+    margin-top: 5%;
+}
+.entryform button{
+    margin-top: 5%;
+    margin-left: 30%;
+    width: 30%;
+}
