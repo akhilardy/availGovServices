@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,29 +11,63 @@
     <link href="hospital-entry.css" rel="stylesheet" type="text/css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="header">
             <p>SIGN IN</p>
         </div>
         <div class="entryform">
-            <div class="input-group">
-                <div class="input-group-addon">
-                    <i class="fa fa-h-square" aria-hidden="true"></i>
+            <form id="hospital_signin_form">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-h-square" aria-hidden="true"></i>
+                    </div>
+                    <input class="form-control" type="name" id="hname" placeholder="Enter your hospital name">
                 </div>
-                <input class="form-control" type="name" id="hname" placeholder="Enter your hospital name">
-            </div>
-            <div class="input-group">
-                <div class="input-group-addon">
-                    <i class="fa fa-key" aria-hidden="true"></i>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-key" aria-hidden="true"></i>
+                    </div>
+                    <input class="form-control" type="name" id="reg-no" placeholder="Enter your Registration number">
                 </div>
-                <input class="form-control" type="name" id="hname" placeholder="Enter your Registration number">
-            </div>
-            <button class="btn btn-danger">submit</button>
+                <button class="btn btn-danger">submit</button>
+            </form>
         </div>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        const base_url = 'http://localhost:8080';
+        const hospital_signin_form = document.querySelector('#hospital_signin_form');
+        hospital_signin_form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = hospital_signin_form['hname'].value;
+            const number = hospital_signin_form['reg-no'].value;
+            // console.log(name, number);
+            const hospital = { name, number };
+            // console.log(hospital);
+            axios.post(base_url + '/api/hospitals/signin', hospital)
+                .then(response => {
+                    console.log(response.data);
+                    if (response.data.status === true) {
+                        localStorage.setItem('hospital_registration_number', response.data.id);
+                        localStorage.setItem('hospital_name', response.data.name);
+                        window.location.href = 'hospital-info.html';
+                        hospital_signin_form.reset();
+                    } else {
+                        M.toast({ html: 'Your are not authorized' });
+                        hospital_signin_form.reset();
+                    }
+                })
+                .catch(error => console.log(error));
+        });
+
+    </script>
 </body>
+
 </html>
