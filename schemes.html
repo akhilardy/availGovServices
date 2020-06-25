@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Schemes</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+    <div id='hospitals'>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        const local_hospitals_object = JSON.parse(localStorage['hospitals']).hospitals;
+        console.log(local_hospitals_object);
+        localStorage.removeItem('hospitals');
+        if (local_hospitals_object.length > 0) {
+            let html = `<div class="row">
+                        <div class="col s12 cards-container">`;
+            for (let i = 0; i < local_hospitals_object.length; i++) {
+                const obj = local_hospitals_object[i];
+                html += `<div class="card horizontal">
+                        <div class="card-content green-text">
+                            <span class="card-title">${obj.name}</span>
+                            <p>${obj.business_status}</p>
+                            <p>Rating: ${obj.rating}</p>`;
+                for (let j = 0; j < obj.services.length; j++) {
+                    html += `<p><b>${obj.services[j].name}</b></p>
+                        <p>${obj.services[j].des}</p>`;
+                }
+                html += ` </div>
+                    </div>`;
+            }
+            html += ` </div>
+                </div>`;
+            document.querySelector('#hospitals').innerHTML = html;
+        }
+        else {
+            let html = `<div class="row">
+                        <div class="col s12 cards-container">
+                            <div class="card horizontal">
+                                <div class="card-content red-text">
+                                    <span class="card-title">SORRY!</span>
+                                    <p>Government schemes are not available in your locality</p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>`;
+            document.querySelector('#hospitals').innerHTML = html;
+        }
+    </script>
+</body>
+
+</html>
